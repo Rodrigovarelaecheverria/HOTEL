@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4862a34b-b83e-4071-b414-ffd70c2b0804">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{fentrada}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     i.fentrada,
+     sum(total)
+FROM
+     reservasi i
+
+where i.fentrada::text>=$P{inicio} and i.fentrada::text<=$P{fin}
+GROUP BY
+     i.fentrada]]>
+	</queryString>
+	<field name="fentrada" class="java.lang.String"/>
+	<field name="sum" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="144" y="10" width="460" height="25" forecolor="#CC0000" uuid="40f4da24-4781-4c5a-a6c9-957b288300db"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[MES CON MAS INGRESOS]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="10" y="10" width="555" height="47" uuid="b6c2be20-606b-416a-931f-65d32a1e4e1b"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="95" y="22" width="460" height="25" forecolor="#CC0000" uuid="4886e986-8b18-49cd-a441-1fe0ab590d42"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[MES CON MAS INGRESOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="35" width="312" height="35" forecolor="#FF3333" uuid="28a55ab3-d80f-42a0-a858-31518b32ee84"/>
+				<textElement>
+					<font fontName="Aharoni" size="30"/>
+				</textElement>
+				<text><![CDATA[HOTEL SIERRA NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="5" width="158" height="30" uuid="f7d924a4-2021-446e-a7ad-d662b4ae6d31"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="38" width="200" height="32" uuid="edda3d64-f1fb-4765-a577-f04e78c4ee55"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[edisonlopezsa@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="70" width="200" height="32" uuid="3cf6a714-ccb0-4e46-b07d-ae8f137b1cb9"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[(06)2630706]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="17" width="555" height="29" uuid="df1fdf76-1a7a-4f10-8df6-f41be6bf0d9c"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="320" y="26" width="100" height="20" uuid="e08912f4-7d33-4e9b-9153-551c21e0e3c1"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSUMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="26" width="100" height="20" uuid="062a4f8e-4cff-4316-b4ce-63a065107fba"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="320" y="2" width="100" height="20" uuid="37425c92-1d56-450e-9bb0-c9bcfb36d3ce"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="2" width="126" height="20" uuid="402ddc70-fcc4-4f61-9b54-ba1e52e0223c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fentrada}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="155" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="0" y="0" width="462" height="155" uuid="7d670043-16ff-42cb-bd24-05d90b29b26b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["REPORTE MES CON MAS INGRESOS"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fentrada}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sum}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

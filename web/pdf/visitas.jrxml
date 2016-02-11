@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfb9dd44-8652-4943-88f9-b93146b6f0e8">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select count (ri.dni),p.* from personas p, reservasi ri
+where p.dni=ri.dni and( ri.fentrada::text>=$P{inicio} and ri.fentrada::text<=$P{fin} ) Group by p.dni
+
+ ]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="dni" class="java.lang.String"/>
+	<field name="tdocumento" class="java.lang.Boolean"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="fnacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.Boolean"/>
+	<field name="clave" class="java.lang.String"/>
+	<field name="estpersona" class="java.lang.Boolean"/>
+	<field name="tpersona" class="java.lang.String"/>
+	<field name="estactivo" class="java.lang.Boolean"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="foto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="47" uuid="e837e2ff-27fb-4ad6-9e44-b8b3108c4ce8"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="80" y="11" width="460" height="25" forecolor="#CC0000" uuid="39c20eb9-22e0-427d-a7e4-6979ca1bc128"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[FRECUENCIA DE VISISTAS DE PERSONAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="29" uuid="c22e44b3-354f-410c-a154-573f8d59f52c"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="154" y="6" width="100" height="20" uuid="66c6a286-afbf-491d-aaf0-f43fa89cbb55"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="6" width="100" height="20" uuid="c54b7ca6-ddbb-4d37-9486-8e8e8c5567ad"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="6" width="100" height="20" uuid="1d3c320d-4a09-49bf-8923-3f49a858b4f8"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="11" width="100" height="20" uuid="0d14ef97-6c4a-4dae-bcbf-54a2a24b4389"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="11" width="100" height="20" uuid="3e3b0de4-8333-41e0-b429-acad1ae364ed"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="11" width="100" height="20" uuid="157d088c-bc9a-459c-81a6-d05fd8948b20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="31" width="555" height="2" uuid="013362f6-d90a-4b68-9992-2bd24a5d7356"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="298" splitType="Stretch">
+			<elementGroup/>
+			<pieChart>
+				<chart>
+					<reportElement x="72" y="0" width="414" height="298" uuid="7e927c74-0ea0-4ac4-8956-5bdaedb77d7b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{dni}+"  "+$F{nombres}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					<labelExpression><![CDATA[$F{count}+"  "+$F{nombres}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

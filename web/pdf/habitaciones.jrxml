@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c32e0d4c-46bb-456d-876d-215bf8f7a371">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select count (i.tipo_habitacion),p.
+*,(th.tipo_hab)as nom from habitaciones p, reservas i,reservasi ri,tipo_habitaciones th
+where th.cod_hab=p.tipo_hab and p.cod_habitacion=i.tipo_habitacion and i.idreservai=ri.idreservai and( ri.fentrada::text>=$P{inicio} and ri.fentrada::text<=$P{fin} )
+Group by i.tipo_habitacion,p.cod_habitacion,th.tipo_hab order by count(i.tipo_habitacion) desc limit 10]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="cod_habitacion" class="java.lang.String"/>
+	<field name="tipo_hab" class="java.lang.String"/>
+	<field name="precio" class="java.lang.Double"/>
+	<field name="foto" class="java.lang.String"/>
+	<field name="ubicacion" class="java.lang.String"/>
+	<field name="nom" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="26" width="555" height="47" uuid="f6d30b30-9633-4c45-9b3a-53654614e331"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="54" y="37" width="459" height="25" forecolor="#CC0000" uuid="3551ae22-e2e2-4eb1-84f4-006016150586"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE HABITACIONES MAS VISITADAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="35" width="312" height="35" forecolor="#FF3333" uuid="d6ab6ec9-5ebe-4e70-a4d2-e9cbecaa061a"/>
+				<textElement>
+					<font fontName="Aharoni" size="30"/>
+				</textElement>
+				<text><![CDATA[HOTEL SIERRA NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="5" width="158" height="30" uuid="fdf6b6fd-daa7-4fc5-8441-90a3e1435739"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="35" width="200" height="32" uuid="44dabd2f-28f2-4de3-8a73-7de222c3b55b"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[edisonlopezsa@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="67" width="200" height="32" uuid="3d8c8741-2b00-4396-a1e9-131fe57fb437"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[(06)2630706]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="455" y="10" width="100" height="20" uuid="8253867c-ef90-41be-a5cc-155f120220af"/>
+				<text><![CDATA[COSTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="10" width="133" height="20" uuid="5acee060-4891-4308-9bf4-7c748728e27a"/>
+				<text><![CDATA[Tipo de Habitacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="10" width="167" height="20" uuid="78de4a69-6acd-49ea-bcd3-498e3ec9fa8c"/>
+				<text><![CDATA[NUMERO DE VECES DE USO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="100" height="20" uuid="c910df71-13fd-4b6e-838d-e5fb6d21d134"/>
+				<text><![CDATA[HABITACION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="326" y="7" width="100" height="20" uuid="57caaa16-7835-4486-a0e9-5fee23f5e783"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="7" width="162" height="20" uuid="d70d41ac-aae2-462e-bed5-4c4294731c06"/>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-1" y="7" width="100" height="20" uuid="bac03028-6793-467f-a354-0baa570480a6"/>
+				<textFieldExpression><![CDATA[$F{cod_habitacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="7" width="100" height="20" uuid="7bcf40c6-6c97-47e5-81e3-6b0290db41b4"/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="289" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="54" y="31" width="459" height="236" uuid="8e55a65d-52a7-4081-8e31-6aa6b9c6d3de"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["HABITACION MAS USADA"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{cod_habitacion}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="165" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

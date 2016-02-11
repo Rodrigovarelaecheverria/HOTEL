@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7fb6415-77d1-4315-bb10-6713c57980cd">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select i.dni,i.fentrada,i.total,nombres,apellidos from reservasi i,personas p where p.dni=i.dni and fentrada::text=$P{inicio}]]>
+	</queryString>
+	<field name="dni" class="java.lang.String"/>
+	<field name="fentrada" class="java.sql.Date"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="10" width="555" height="47" uuid="1240688a-37e1-4319-ad5d-748c409d875b"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="79" y="20" width="371" height="25" forecolor="#CC0000" uuid="79529484-c9e9-4e53-9a5b-42a5384c54c3"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[RESUMEN DE INGRESOS DIARIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="10" width="153" height="20" uuid="4fc09207-0270-4c4f-bb34-51f506a3adaa"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="326" y="5" width="158" height="30" uuid="de798a3a-cc44-4607-9281-7c55dd1cb2f0"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="35" width="312" height="35" forecolor="#FF3333" uuid="446e2808-1f8c-4741-ab49-416fe7cd49d2"/>
+				<textElement>
+					<font fontName="Aharoni" size="30"/>
+				</textElement>
+				<text><![CDATA[HOTEL SIERRA NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="35" width="200" height="32" uuid="261c2de7-7210-4615-8c2a-4f236af122c0"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[edisonlopezsa@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="67" width="200" height="32" uuid="da975792-f6a7-48dc-9c68-ac3f42221ae3"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[(06)2630706]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="7" width="555" height="29" uuid="cf66eb07-2a10-4780-adf2-8344831eb7b0"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="30" y="11" width="194" height="20" uuid="5236ff03-bdd2-44be-941b-55cc88d7a7d3"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[CODIGO DE LA RESERVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="11" width="178" height="20" uuid="0a463617-9fa5-4f73-84b0-2777b52935d8"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[FECHA DE LA RESERVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="11" width="100" height="20" uuid="365666ec-cd1e-404e-b634-a26a07c019bf"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="87" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="144" height="20" uuid="3373d906-1b91-46de-9cd7-06d3be2aac6d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="0" width="134" height="20" uuid="2493d844-d84b-4451-a61e-a1cba1dc1312"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fentrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="0" width="100" height="20" uuid="e71d2ab3-60a0-4f3c-9bf9-c64b8292468a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="165" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="2" y="0" width="532" height="143" uuid="c8e27cda-d640-41a9-b002-2908f345ccbb"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["INGRESOS TOTALES"]]></seriesExpression>
+						<categoryExpression><![CDATA["N. Identidad"+$F{dni}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="61" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="5" width="555" height="2" uuid="5e2eb1d2-1269-4621-b955-a9a90487fdef"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

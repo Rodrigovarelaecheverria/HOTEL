@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e7e2c216-7f7c-4b6b-9942-9f08a479200c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select p.dni,p.nombres,p.apellidos,count(r.dni),sum(total) from personas p,reservasi r where r.dni=p.dni and (fentrada::text>=$P{inicio} and fsale::text<=$P{fin}) group by p.dni]]>
+	</queryString>
+	<field name="dni" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<field name="sum" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="12" width="555" height="47" uuid="a3c49f03-48fd-4225-a8df-615f773e647e"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="54" y="22" width="459" height="25" forecolor="#CC0000" uuid="02e6c722-814a-40e4-a38b-f850b82c4d0e"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE CLIENTE QUE MAS CONSUME]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="22" y="36" width="312" height="35" forecolor="#FF3333" uuid="38726592-9dc2-4a28-a58f-4674819cd9a4"/>
+				<textElement>
+					<font fontName="Aharoni" size="30"/>
+				</textElement>
+				<text><![CDATA[HOTEL SIERRA NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="36" width="200" height="32" uuid="30224eaa-d9b4-4ba6-af89-e4a24f63c9d1"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[edisonlopezsa@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="6" width="158" height="30" uuid="29dbeaaf-47d0-497a-b3a9-ddb8bad6daa6"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="68" width="200" height="32" uuid="e4eaca34-793d-451c-95c6-edabd8db88ca"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[(06)2630706]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="116" y="42" width="100" height="20" uuid="91299a2d-6e42-4553-b16a-e18ca7bc5ddc"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="42" width="100" height="20" uuid="2b346f5a-6a29-429c-9ab5-3763384d6511"/>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="42" width="100" height="20" uuid="ce385d1a-02c0-4123-a221-226909735062"/>
+				<text><![CDATA[GASTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="42" width="100" height="20" uuid="2034524b-30eb-4d06-98fc-168815593db3"/>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="42" width="100" height="20" uuid="63b4b695-d9df-4d54-a84b-3e0ccf1c766e"/>
+				<text><![CDATA[CONTEO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="58" splitType="Stretch">
+			<textField>
+				<reportElement x="116" y="0" width="100" height="20" uuid="d7a09672-a79b-495d-8991-000077b4abab"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="100" height="20" uuid="deaf6c6a-7a9e-4d46-94b1-fb9b3adfe250"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="6e35b013-b288-4e41-af83-622e8c8699a3"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="46e47761-7466-430a-948c-995414dfee7d"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="0" width="100" height="20" uuid="433502a3-d04e-4eb8-93fd-9e46e8bf71c2"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="242" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="66" y="18" width="406" height="190" uuid="f7a0736d-46f8-4035-9b4b-ccd7c964c74d"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["CLIENTE QUE MAS CONSUME"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{apellidos}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="134" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="151" splitType="Stretch"/>
+	</summary>
+</jasperReport>

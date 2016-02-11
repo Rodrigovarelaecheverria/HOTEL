@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="822e3f99-f973-4490-8d5f-ef2501d6f963">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="inicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     i.fentrada,
+     count(dni)
+FROM
+     reservasi i
+
+where i.fentrada::text>=$P{inicio} and i.fentrada::text<=$P{fin}
+GROUP BY
+     i.fentrada order by count(dni) desc]]>
+	</queryString>
+	<field name="fentrada" class="java.sql.Date"/>
+	<field name="count" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="20" width="555" height="47" uuid="13eb8d8d-ee2e-47f9-ac0e-6e813f6f37a9"/>
+				<graphicElement>
+					<pen lineWidth="2.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="148" y="32" width="332" height="25" forecolor="#CC0000" uuid="47e45777-971a-4880-bc9c-f012f27320a0"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="20" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[DIA MAS VISITADO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="339" y="37" width="200" height="32" uuid="3011d547-e209-43a5-a0d4-9a7be203162f"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[edisonlopezsa@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="69" width="200" height="32" uuid="c09ab9a3-2586-4a5b-a7a1-0cfabba2967f"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[(06)2630706]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="37" width="312" height="35" forecolor="#FF3333" uuid="47200b1d-fcdc-4c75-b1df-a5cfbbc695e8"/>
+				<textElement>
+					<font fontName="Aharoni" size="30"/>
+				</textElement>
+				<text><![CDATA[HOTEL SIERRA NORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="7" width="158" height="30" uuid="fdfa8914-7fc7-4ed8-a08e-593d1ae1240e"/>
+				<textElement>
+					<font fontName="Agency FB" size="20"/>
+				</textElement>
+				<text><![CDATA[Contactos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="9" width="555" height="29" uuid="a07a7a8d-19be-4078-ab95-94b954ac25dc"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="91" y="18" width="194" height="20" uuid="31c0ec49-2e09-431c-8a6f-9c777cd37be9"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[FECHA MAS VISITADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="18" width="194" height="20" uuid="946c1526-5302-4d0e-a597-1fcb27e9f9af"/>
+				<textElement>
+					<font fontName="Arial Rounded MT Bold" size="14"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE VISITAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="91" y="4" width="100" height="20" uuid="bc4da633-5684-47ec-85ae-8e18e8619248"/>
+				<textFieldExpression><![CDATA[$F{fentrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="3" width="100" height="20" uuid="a4706002-f041-4d2b-a509-c9e184efa78f"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="279" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="12" y="0" width="527" height="279" uuid="c8e0a8be-32b1-42ee-b7cd-e6b8c90bc8f8"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{fentrada}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{fentrada}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
